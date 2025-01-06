@@ -99,6 +99,13 @@ export default defineConfig((/* ctx */) => {
     devServer: {
       // https: true,
       open: false, // opens browser window automatically
+      proxy: {
+        '/api': {
+          target: process.env.API_URL, // 환경 변수 사용
+          changeOrigin: true,
+          pathRewrite: { '^/api': '' },
+        },
+      },
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework
